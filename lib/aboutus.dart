@@ -6,18 +6,17 @@ class AboutUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("About us"),
-      // ),
-      body: TextButton(
-        onPressed: () {
-          // this takes to previous page
-          Navigator.pop(context);
-          // this closes the application
-          SystemNavigator.pop();
-        },
-        child: Text("Go back"),
+    return SafeArea(
+      child: Scaffold(
+        body: TextButton(
+          onPressed: () {
+            // this takes to previous page
+            Navigator.pop(context);
+            // this closes the application
+            SystemNavigator.pop();
+          },
+          child: Text("Go back"),
+        ),
       ),
     );
   }
