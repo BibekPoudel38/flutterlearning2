@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:myapp/aboutus.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +16,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hello',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       home: const MyHomePage(),
+      routes: {
+        '/aboutUs': (_) => const AboutUs(),
+      },
     );
   }
 }
@@ -34,19 +40,30 @@ class _MyHomePageState extends State<MyHomePage> {
     fontWeight: FontWeight.bold,
   );
 
+  var buttonStyle = ButtonStyle(
+    foregroundColor: MaterialStateProperty.all(Colors.red),
+    backgroundColor: MaterialStateProperty.all(Colors.black),
+    elevation: MaterialStateProperty.all(15),
+    fixedSize: MaterialStateProperty.all(
+      Size.fromWidth(400),
+    ),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("This is appbar"),
+      ),
       body: Container(
         color: Colors.white,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Card(
+              elevation: 20,
               color: Colors.black,
               child: myText(text: "Hello1", color: Colors.red),
             ),
@@ -61,17 +78,94 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.white,
               ),
             ),
-            Image.asset(
-              'assets/image.jpg',
-              height: 100,
-              width: 100,
-              fit: BoxFit.fitWidth,
+            GestureDetector(
+              onTap: () {},
+              child: Card(
+                elevation: 10,
+                child: Image.asset(
+                  'assets/image.jpg',
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
             ),
+            SizedBox(height: 50),
             Image.network(
               'https://c4.wallpaperflare.com/wallpaper/500/442/354/outrun-vaporwave-hd-wallpaper-preview.jpg',
               height: 100,
               width: 100,
               fit: BoxFit.cover,
+            ),
+            MaterialButton(
+              onPressed: () {
+                // this lets user go back
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => AboutUs(),
+                //   ),
+                // );
+                Navigator.pushNamed(context, '/aboutUs');
+                // this doesn't let user go back
+                // Navigator.pushAndRemoveUntil(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => AboutUs(),
+                //   ),
+                //   (route) => false,
+                // );
+                // Navigator.pushNamedAndRemoveUntil(
+                //   context,
+                //   '/aboutUs',
+                //   (route) => false,
+                // );
+              },
+              child: const Text("Material Button"),
+              color: Colors.orange,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32),
+              ),
+              elevation: 0,
+              height: 100,
+              minWidth: 200,
+              splashColor: Colors.red,
+              hoverElevation: 20,
+            ),
+            TextButton(
+              style: buttonStyle,
+              onPressed: () {},
+              child: Text("Text Button"),
+            ),
+            IconButton(
+              onPressed: () {
+                log("Icon button pressed");
+                print("Icon button pressed");
+              },
+              color: Colors.red,
+              icon: Icon(
+                Icons.add,
+              ),
+            ),
+            OutlinedButton(
+              style: buttonStyle.copyWith(
+                side: MaterialStateProperty.all(
+                  BorderSide(color: Colors.green, width: 5),
+                ),
+              ),
+              // style: ButtonStyle(
+              //   backgroundColor: MaterialStateProperty.all(Colors.red),
+              //   side: MaterialStateProperty.all(
+              //     BorderSide(color: Colors.black),
+              //   ),
+              // ),
+              onPressed: () {},
+              child: Text("Outlined Button"),
+            ),
+            ElevatedButton(
+              style: buttonStyle,
+              onPressed: () {},
+              child: Text("Elevated Button"),
             ),
           ],
         ),
