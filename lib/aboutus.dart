@@ -21,3 +21,10 @@ class AboutUs extends StatelessWidget {
     );
   }
 }
+
+
+// Food delivery app
+// Travel app
+// location tracer
+// Freelancing app
+// Hotel booking app

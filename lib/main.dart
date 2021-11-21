@@ -50,14 +50,17 @@ class _MyHomePageState extends State<MyHomePage> {
   );
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("This is appbar"),
       ),
       body: Container(
         color: Colors.white,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        width: width,
+        height: height,
         child: ListView(
           // crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
