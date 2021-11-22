@@ -8,14 +8,19 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: TextButton(
-          onPressed: () {
-            // this takes to previous page
-            Navigator.pop(context);
-            // this closes the application
-            SystemNavigator.pop();
-          },
-          child: Text("Go back"),
+        appBar: AppBar(),
+        body: Column(
+          children: [
+            TextButton(
+              onPressed: () {
+                // this takes to previous page
+                Navigator.pop(context);
+                // this closes the application
+                SystemNavigator.pop();
+              },
+              child: Text("Go back"),
+            ),
+          ],
         ),
       ),
     );

@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:myapp/aboutus.dart';
+import 'package:myapp/login_page.dart';
+import 'package:myapp/signupfile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(),
       routes: {
         '/aboutUs': (_) => const AboutUs(),
+        '/login': (_) => const LoginPage(),
       },
     );
   }
@@ -137,8 +140,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               style: buttonStyle,
-              onPressed: () {},
-              child: Text("Text Button"),
+              onPressed: () {
+                Navigator.pushNamed(context, "/login",
+                    arguments: const LoginPage(
+                      username: "Bibek Poudel",
+                    ));
+              },
+              child: Text("Go to login"),
             ),
             IconButton(
               onPressed: () {
@@ -153,17 +161,20 @@ class _MyHomePageState extends State<MyHomePage> {
             OutlinedButton(
               style: buttonStyle.copyWith(
                 side: MaterialStateProperty.all(
-                  BorderSide(color: Colors.green, width: 5),
+                  const BorderSide(color: Colors.green, width: 5),
                 ),
               ),
-              // style: ButtonStyle(
-              //   backgroundColor: MaterialStateProperty.all(Colors.red),
-              //   side: MaterialStateProperty.all(
-              //     BorderSide(color: Colors.black),
-              //   ),
-              // ),
-              onPressed: () {},
-              child: Text("Outlined Button"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignupPage(
+                      username: "",
+                    ),
+                  ),
+                );
+              },
+              child: const Text("Go to signup page"),
             ),
             ElevatedButton(
               style: buttonStyle,
