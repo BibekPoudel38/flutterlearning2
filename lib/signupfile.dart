@@ -39,8 +39,8 @@ class _SignupPageState extends State<SignupPage> {
                 if (!value!.contains('@')) {
                   return "Invalid email";
                 }
-                if (value.length > 90) {
-                  return "Too long password";
+                if (value.length < 8) {
+                  return "Too short password";
                 }
                 return null;
               },
@@ -48,18 +48,19 @@ class _SignupPageState extends State<SignupPage> {
             TextField(),
             TextButton(
               onPressed: () {
-                setState(() {
-                  show = !show;
-                });
+                // setState(() {
+                //   show = !show;
+                // });
                 // if (formKey.currentState!.validate()) {
                 //   // send data to the server
+
                 // } else {
                 //   // do nothing
                 // }
               },
               child: Text("Print"),
             ),
-            show
+            show == true
                 ? Text(
                     "Hello there I am true",
                     style: TextStyle(fontSize: 35),
