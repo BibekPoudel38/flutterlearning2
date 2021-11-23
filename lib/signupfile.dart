@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -11,69 +12,101 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  TextEditingController emailController = TextEditingController();
+  bool passwordhide = false;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  bool show = false;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.username!),
+        title: Text("Login"),
       ),
-      body: Form(
-        key: formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                hintText: "Enter Email",
-                labelText: "Enter email",
-                fillColor: Colors.blue,
-                filled: true,
-              ),
-              validator: (value) {
-                if (!value!.contains('@')) {
-                  return "Invalid email";
-                }
-                if (value.length < 8) {
-                  return "Too short password";
-                }
-                return null;
-              },
-            ),
-            TextField(),
-            TextButton(
-              onPressed: () {
-                // setState(() {
-                //   show = !show;
-                // });
-                // if (formKey.currentState!.validate()) {
-                //   // send data to the server
-
-                // } else {
-                //   // do nothing
-                // }
-              },
-              child: Text("Print"),
-            ),
-            show == true
-                ? Text(
-                    "Hello there I am true",
-                    style: TextStyle(fontSize: 35),
-                  )
-                : Text(
-                    "HEllo there i am false",
-                    style: TextStyle(fontSize: 35),
+      body: Container(
+        // color: Colors.blue,
+        width: width,
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              Text("Login here to continue"),
+              // this field can be validated
+              TextFormField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  hintText: "Enter Email",
+                  labelText: "Email address",
+                  fillColor: Colors.yellow,
+                  filled: true,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      emailController.clear();
+                    },
+                    icon: Icon(Icons.clear),
                   ),
-            Visibility(
-              visible: show,
-              child: Text("Visible"),
-            ),
-          ],
+                ),
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.done,
+                validator: (value) {
+                  if (!value!.contains("@")) {
+                    return "The email is invalid";
+                  }
+                  if (!value.contains(".com")) {
+                    return "The email is invalid";
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: passwordController,
+                obscureText: passwordhide,
+                obscuringCharacter: "*",
+                decoration: InputDecoration(
+                  hintText: "Enter Password",
+                  labelText: "Email password",
+                  // fillColor: Colors.yellow,
+                  filled: true,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        passwordhide = !passwordhide;
+                      });
+                    },
+                    icon: passwordhide
+                        ? const Icon(
+                            Icons.visibility_outlined,
+                          )
+                        : const Icon(
+                            Icons.visibility_off_outlined,
+                          ),
+                  ),
+                ),
+                textInputAction: TextInputAction.done,
+                validator: (value) {
+                  if (value!.length < 8) {
+                    return "Too short password";
+                  }
+
+                  return null;
+                },
+              ),
+
+              TextButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    log("Login successful");
+                  }
+                },
+                child: Text("Login"),
+              ),
+
+              // this field cannot be validated
+              // TextField(),
+            ],
+          ),
         ),
       ),
     );
