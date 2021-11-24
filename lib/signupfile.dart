@@ -2,16 +2,18 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:myapp/homepage.dart';
+import 'package:myapp/main.dart';
 
-class SignupPage extends StatefulWidget {
-  SignupPage({Key? key, this.username}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  LoginPage({Key? key, this.username}) : super(key: key);
   final String? username;
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _LoginPageState extends State<LoginPage> {
   bool passwordhide = false;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -94,10 +96,16 @@ class _SignupPageState extends State<SignupPage> {
                 },
               ),
 
-              TextButton(
+              ElevatedButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     log("Login successful");
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        ),
+                        (route) => false);
                   }
                 },
                 child: Text("Login"),

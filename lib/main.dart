@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:myapp/aboutus.dart';
-import 'package:myapp/login_page.dart';
 import 'package:myapp/signupfile.dart';
 
 void main() {
@@ -21,10 +20,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(),
+      home: LoginPage(),
       routes: {
         '/aboutUs': (_) => const AboutUs(),
-        '/login': (_) => const LoginPage(),
+        // '/login': (_) => const LoginPage(),
       },
     );
   }
@@ -107,26 +106,26 @@ class _MyHomePageState extends State<MyHomePage> {
             MaterialButton(
               onPressed: () {
                 // this lets user go back
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => AboutUs(),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AboutUs(),
+                  ),
+                );
                 Navigator.pushNamed(context, '/aboutUs');
                 // this doesn't let user go back
-                // Navigator.pushAndRemoveUntil(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => AboutUs(),
-                //   ),
-                //   (route) => false,
-                // );
-                // Navigator.pushNamedAndRemoveUntil(
-                //   context,
-                //   '/aboutUs',
-                //   (route) => false,
-                // );
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AboutUs(),
+                  ),
+                  (route) => false,
+                );
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/aboutUs',
+                  (route) => false,
+                );
               },
               child: const Text("Material Button"),
               color: Colors.orange,
@@ -142,10 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
               style: buttonStyle,
               onPressed: () {
-                Navigator.pushNamed(context, "/login",
-                    arguments: const LoginPage(
-                      username: "Bibek Poudel",
-                    ));
+                Navigator.pushNamed(context, "/login");
               },
               child: Text("Go to login"),
             ),
@@ -169,9 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SignupPage(
-                      username: "",
-                    ),
+                    builder: (context) => LoginPage(),
                   ),
                 );
               },
