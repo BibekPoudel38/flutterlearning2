@@ -2,7 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:myapp/aboutus.dart';
+import 'package:myapp/maps.dart';
+import 'package:myapp/pageviewpage.dart';
 import 'package:myapp/signupfile.dart';
+import 'package:myapp/tabviewpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: LoginPage(),
+      home: TabViewPage(),
       routes: {
         '/aboutUs': (_) => const AboutUs(),
         // '/login': (_) => const LoginPage(),
