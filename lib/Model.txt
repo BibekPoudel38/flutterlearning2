@@ -1,0 +1,11 @@
+Model
+    Admin        
+    Customer
+View
+    Admin
+    Customer
+Controller
+    Admin
+    Customer
+Utils
+main.dart

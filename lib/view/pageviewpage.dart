@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/view/homepage.dart';
 
 class PageViewPage extends StatefulWidget {
   const PageViewPage({Key? key}) : super(key: key);
@@ -24,16 +25,16 @@ class _PageViewPageState extends State<PageViewPage> {
       appBar: AppBar(
         title: Text("Page View"),
       ),
-      // bottomNavigationBar: bottomBar(),
+      bottomNavigationBar: bottomBar(),
       body: PageView(
-        scrollDirection: Axis.vertical,
+        scrollDirection: Axis.horizontal,
         onPageChanged: (val) {
           setState(() {
             selected = val;
             controller.jumpToPage(val);
           });
         },
-        // physics: const NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         controller: controller,
         children: [
           Container(
@@ -53,10 +54,11 @@ class _PageViewPageState extends State<PageViewPage> {
       onTap: (val) {
         setState(() {
           selected = val;
+
           controller.animateToPage(
             val,
             duration: const Duration(milliseconds: 400),
-            curve: Curves.bounceOut,
+            curve: Curves.bounceIn,
           );
         });
       },

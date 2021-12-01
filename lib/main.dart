@@ -1,11 +1,13 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:myapp/aboutus.dart';
-import 'package:myapp/maps.dart';
-import 'package:myapp/pageviewpage.dart';
-import 'package:myapp/signupfile.dart';
-import 'package:myapp/tabviewpage.dart';
+import 'package:myapp/view/aboutus.dart';
+import 'package:myapp/view/comments.dart';
+import 'package:myapp/view/maps.dart';
+import 'package:myapp/view/pageviewpage.dart';
+import 'package:myapp/view/posts.dart';
+import 'package:myapp/view/signupfile.dart';
+import 'package:myapp/view/tabviewpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,9 +23,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Hello',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.purple,
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(fontSize: 11),
+        ),
       ),
-      home: TabViewPage(),
+      // theme: ThemeData.dark(),
+      home: const CommentView(),
       routes: {
         '/aboutUs': (_) => const AboutUs(),
         // '/login': (_) => const LoginPage(),

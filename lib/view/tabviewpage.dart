@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:myapp/maps.dart';
+import 'package:myapp/view/maps.dart';
 
 class TabViewPage extends StatefulWidget {
   const TabViewPage({Key? key}) : super(key: key);
